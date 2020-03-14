@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-Feb-2020 00:29:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.test.Examlist" table="examlist" catalog="schoolm" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="examName" type="string">
+            <column name="examName" length="45" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="45" not-null="true" />
+        </property>
+        <property name="coment" type="string">
+            <column name="coment" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

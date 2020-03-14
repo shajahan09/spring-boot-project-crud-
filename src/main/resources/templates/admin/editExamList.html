@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+
+    <head>
+        <title>Edit exam List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="vendor/bootstrap.min.css">
+        <link href="vendor/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="vendor/styleT.css">
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+        <link rel="stylesheet" href="vendor/c3.css">
+
+
+    </head>
+    <body>
+        <!-- Default form contact -->
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="column" style="background-color:#aaa;">
+                    <form class="text-center border border-light p-5" action="#"
+                          th:object="${exmlst}" th:action="@{/update/{id}(id=${exmlst.id})}" method="post">
+
+                        <p class="h4 mb-4">Editing Admin Exam List </p>
+
+                        <label>Exam-Name</label>
+                        <input type="text" id="exam_name"  
+                               th:field="*{exam_name}" class="form-control mb-4" placeholder="Exam Name">
+
+                        <label>Exam-Month</label>
+                        <input type="text" id="date" th:field="*{date}" 
+                               class="form-control mb-4" placeholder="DD/MM/YYYY">
+
+                        <label>Details</label>
+                        <div class="form-group">
+                            <textarea class="form-control rounded-0" th:field="*{coment}" 
+                                      name="coment" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+                        </div>
+
+
+                        <button class="btn btn-default" type="submit">Save</button>
+
+
+                    </form>
+
+                </div>
+
+
+                <!--1st Grid end-->
+
+                <div class="column" style="background-color:#bbb;">
+                    <form action="/showExamlists">
+                        <button class="btn btn-pinterest btn- btn-info btn-rounded fa fa-sync" type="submit">Reload</button>
+
+
+                        <h2 align="center">Exam List</h2>
+
+                        <table border="1" class = "table table-striped" cellpadding="10">
+                            <tr>
+                                <th>ID</th>
+                                <th>Exam Name</th>
+                                <th>Date</th>
+                                <th>Desception</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+
+
+                            <c:forEach items="${exmlst}" var="exm">
+                                <tr th:each="exm : ${exmlst}">
+
+                                    <td th:text="${exm.id}">ID</td>
+                                    <td th:text="${exm.exam_name}">Exam Name</td>
+                                    <td th:text="${exm.date}">Date</td>
+                                    <td th:text="${exm.coment}">Desception</td>
+                                    <td> <a th:href="@{/edit/{id}(id=${exm.id})}"
+                                            class="fa fa-edit">Edit</a> || 
+                                        <a th:href="@{/delete/{id}(id=${exm.id})}" class="fa fa-trash" onclick="return confirm('Are you sure Delete item this?');">Delete</a></td>
+
+                                </tr>  
+                                <!--</#list>-->
+                            </c:forEach>
+
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
